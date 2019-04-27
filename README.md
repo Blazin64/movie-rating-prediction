@@ -1,5 +1,5 @@
-# movie-rating-prediction
-Movie rating prediction project for COMP6/4118
+# Movie rating prediction
+A project for COMP6/4118
 
 ## Setup instructions
 This project uses Surprise, a Python scikit. Run these commands to install it:
