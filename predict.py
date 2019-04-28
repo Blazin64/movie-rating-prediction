@@ -3,15 +3,16 @@ from collections import defaultdict
 from surprise import Dataset, evaluate, Reader, SVD
 
 
-# Predict top movies for a user
+# Predict the top movies (top 5 by default) for a set of users
 def predict_top_movies(my_users, predictions, k=5):
     # Set up an empy dictionary
     top_movies = defaultdict(list)
-    # Read through the predicted ratings and store them
-    # if they are predicted for the desired user.
+    # Read through the predicted ratings and store them in the dictionary
     for user, item, truth, prediction, _ in predictions:
+        # Only store predictions for the requested users
         if user in my_users:
             top_movies[user].append((item, prediction))
+    # Organize the ratings so that the top rated movies are first
     for user, ratings in top_movies.items():
         ratings.sort(key=lambda x: x[1], reverse=True)
         top_movies[user] = ratings[:k]
@@ -35,7 +36,7 @@ method.fit(trainset)
 predictions = method.test(trainset.build_anti_testset())
 # User range
 users = ["196", "197"]
-# Predict the top movies (top 5 by default) for a set of users
+# Predict the top movies for the selected users
 top_movies = predict_top_movies(users, predictions)
 for user_id, ratings in top_movies.items():
     print(user_id, [iid for (iid, _) in ratings])
