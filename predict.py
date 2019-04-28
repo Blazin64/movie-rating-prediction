@@ -20,8 +20,8 @@ def get_movie_titles(movie_ids):
     return movie_dict
 
 
-# Predict the top movies (top 5 by default) for a set of users
-def predict_top_movies(my_users, predictions, k=5):
+# Get the top movies (top 5 by default) for a set of users
+def get_top_movies(my_users, predictions, k=5):
     # Set up an empy dictionary
     top_movies = defaultdict(list)
     # Read through the predicted ratings and store them in the dictionary
@@ -37,7 +37,7 @@ def predict_top_movies(my_users, predictions, k=5):
 
 
 # Reassurance that the script is actually running.
-print("\nThe prediction tool is running.")
+print("\nNow training on the MovieLens latest small dataset.")
 print("Please wait...\n")
 # Define the file's format
 reader = Reader(line_format='user item rating timestamp', sep=',')
@@ -51,18 +51,30 @@ cross_validate(method, data, measures=['RMSE', 'MAE'], cv=8, verbose=True)
 trainset = data.build_full_trainset()
 method.fit(trainset)
 print("\nNow predicting ratings for movies not rated yet.")
-print("Please wait...")
+print("Please wait...\n")
 # Test on an anti testset
 predictions = method.test(trainset.build_anti_testset())
-# User range
-users = ["196", "197"]
-# Predict the top movies for the selected users
-top_movies = predict_top_movies(users, predictions)
+# Get a user selection
+print("What user IDs would you like to predict ratings for?")
+print("If entering multiple values, press enter before entering another.")
+print("Press enter twice when done.")
+print("Valid user IDs are 1-610.")
+users = []
+counter = 0
+while True:
+    choice = input("Choice: ")
+    if counter >= 1 and choice == "":
+        break
+    else:
+        users.append(choice)
+        counter += 1
+# Get the predicted top movies for the selected users
+top_movies = get_top_movies(users, predictions)
 # Collect the movie IDs for the users' top movies
 movie_ids = []
 for user_id, ratings in top_movies.items():
-    for iid, _ in ratings:
-        movie_ids.append(iid)
+    for movie_id, _ in ratings:
+        movie_ids.append(movie_id)
 # Grab the titles and genres for the movie IDs
 movie_dict = get_movie_titles(movie_ids)
 # Print out the results
@@ -72,8 +84,8 @@ for user_id, ratings in top_movies.items():
     if counter == 6:
         counter = 1
     print("User ID: " + user_id)
-    for iid, prediction in ratings:
-        current = movie_dict[iid]
+    for movie_id, prediction in ratings:
+        current = movie_dict[movie_id]
         print("\t#" + str(counter) + ". " + current[0])
         print("\t\t" + current[1])
         print("\t\tPredicted rating: {:0.3f}".format(prediction) + "\n")
