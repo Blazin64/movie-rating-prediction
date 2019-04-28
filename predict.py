@@ -1,11 +1,14 @@
 #!/bin/python3
 from collections import defaultdict
-from surprise import Dataset, evaluate, Reader, SVDpp, SVD
+from surprise import Dataset, evaluate, Reader, SVD
 
 
 # Predict top movies for a user
 def predict_top_movies(my_users, predictions, k=5):
+    # Set up an empy dictionary
     top_movies = defaultdict(list)
+    # Read through the predicted ratings and store them
+    # if they are predicted for the desired user.
     for user, item, truth, prediction, _ in predictions:
         if user in my_users:
             top_movies[user].append((item, prediction))
