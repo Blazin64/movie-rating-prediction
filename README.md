@@ -11,9 +11,9 @@ You will need to have Python 3 installed on your system.
 
 Run this command to install a few extra dependencies:
 ```
-pip3 install numpy scikit-surprise tkinter
+pip3 install numpy psutil scikit-surprise tkinter
 ```
-You will also need to install the `python3-tk` (Debian/Ubuntu) or `python3-tkinter` (Fedora) packages. On Windows, it can be installed with the "tcl/tk and IDLE" check box under optional features in the Python 3 installer.
+You may also need to install the `python3-tk` (Debian/Ubuntu) or `python3-tkinter` (Fedora) packages. On Windows, it can be installed with the "tcl/tk and IDLE" check box under optional features in the Python 3 installer.
 
 ## Usage
 
