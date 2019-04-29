@@ -1,13 +1,13 @@
 #!/bin/python3
-from tkinter import Tk, Button, Label, Entry, scrolledtext, DISABLED, END, NORMAL
-import csv
-import numpy
 from collections import defaultdict
 from surprise import Dataset, Reader, SVD
 from surprise.model_selection import cross_validate
-import time
+from tkinter import Tk, Button, Label, Entry, scrolledtext, DISABLED, END, NORMAL
+import csv
+import numpy
 import os
 import psutil
+import time
 
 
 class MovieRatings:
@@ -139,7 +139,7 @@ class MovieRatings:
         method.fit(trainset)
         end = time.time()
         spent = end - start
-        self.printer("Training time: {:0.3f} seconds".format(spent))
+        self.printer("Training and testing time: {:0.3f} seconds\n".format(spent))
         process = psutil.Process(os.getpid())
         self.printer("Memory used:")
         self.printer("{:0.5f}".format(process.memory_info().rss/1048576.0) + " MB Physical")
