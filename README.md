@@ -2,11 +2,10 @@
 A project for COMP6/4118
 
 ## Setup instructions
-This project uses Surprise, a Python scikit. Run these commands to install it:
+This project uses Numpy, Surprise, and Tkinter. Run this command to install them:
 
 ```
-pip3 install numpy
-pip3 install scikit-surprise
+pip3 install numpy scikit-surprise tkinter
 ```
 
 ## Usage
