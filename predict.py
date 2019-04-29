@@ -7,6 +7,7 @@ import csv
 import numpy
 import os
 import psutil
+import random
 import time
 
 
@@ -108,6 +109,10 @@ class MovieRatings:
 
     # Train with the dataset
     def trainer(self):
+        # Set the random seed that numpy (used internally by Surprise) will use.
+        my_seed = random.randint(0, 2**32)
+        random.seed(my_seed)
+        numpy.random.seed(my_seed)
         # Reassurance that the script is actually running.
         self.printer("\nNow training on the MovieLens latest small dataset. (8 folds used)")
         self.printer("Please wait...\n")
@@ -121,6 +126,8 @@ class MovieRatings:
         # Use 8-fold cross validation and evaluate the results with RMSE and MAE
         measurements = cross_validate(method, data, measures=['RMSE', 'MAE'],
                                       cv=8, verbose=False, n_jobs=-2, return_train_measures=True)
+        # Print the random seed used for fold assignments
+        self.printer("Random seed used for fold assignment: {}\n".format(my_seed))
         # Show the stats
         meanFitTime = numpy.mean(measurements["fit_time"])
         meanTestTime = numpy.mean(measurements["test_time"])
