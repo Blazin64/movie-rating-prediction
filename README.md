@@ -12,4 +12,4 @@ You will also need to install the `python3-tk` (Debian/Ubuntu) or `python3-tkint
 
 ## Usage
 
-This project uses a single Python script. Run it with `python3 predict.py`
+This project uses a single Python script. Run it with `python3 predict.py` Any other usage instructions are shown in the GUI.
