@@ -3,7 +3,7 @@ A project for COMP6/4118 in Spring 2019.
 
 By David Reddick and Thomas Goodman.
 
-This project uses Surprise and the SVD algorithm to demonstrate collaborative filtering on the MovieLens latest small dataset.
+This project uses Surprise and the SVD algorithm to demonstrate collaborative filtering on the MovieLens latest small dataset. The top 10 movies for users are predicted based on their rating history and how other users have rated the movies.
 
 ## Setup instructions
 
