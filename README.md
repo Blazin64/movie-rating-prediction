@@ -1,3 +1,5 @@
+**NOTE:** This project is no longer active. You are welcome to fork it, of course! :grin:
+
 # Movie rating prediction
 A project for COMP6/4118 in Spring 2019.
 
